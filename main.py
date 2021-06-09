@@ -1,14 +1,11 @@
-from helpers import Menu
+from helpers import Menu, matrizPrint
 from multiprocessing import Process, Pipe
+import datetime
+from time import sleep
 
-def matrizPrint(m):
-    for row in m:
-        for col in row:
-            print(col, end='')
-        print()
-
-def cuadrado_1(p, c):
-    canva = c.recv()
+def cuadrado_1(p):
+    print('Dibujando Fondo...', end='')
+    canva = list(map(lambda x: ['']*44, range(16)))
     for col in range(len(canva[0])):
         canva[0][col] = '*'
         canva[-1][col] = '*'
@@ -17,11 +14,12 @@ def cuadrado_1(p, c):
             inv = (col+1)*-1
             canva[row][col] = '*'
             canva[row][inv] = '*'
-    matrizPrint(canva)
+    print('Dibujado ')
     p.send(canva)
 
-def cuadrado_2(p, c):
-    canva = c.recv()
+def cuadrado_2(p):
+    print('Dibujando Borde...', end='')
+    canva = list(map(lambda x: ['']*44, range(16)))
     for row in [1, -2]:
         for col in range(6, 38):
             if col in [6, 37]:
@@ -31,16 +29,17 @@ def cuadrado_2(p, c):
     for row in range(2, 14):
         canva[row][6] = '|'
         canva[row][-7] = '|'
-    matrizPrint(canva)
+    print('Dibujado ')
     p.send(canva)
 
-def cuadrado_3(p, c):
-    canva = c.recv()
-    for row in range(len(canva)):
-        for col in range(len(canva[0])):
-            if canva[row][col]  == '':
-                canva[row][col] = ' '
-    matrizPrint(canva)
+def cuadrado_3(p):
+    print('Dibujando Relleno...', end='')
+    canva = list(map(lambda x: ['']*44, range(16)))
+    for row in range(2, 14):
+        for col in range(7, 37):
+            canva[row][col] = ' '
+    print('Dibujado ')
+    p.send(canva)
 
 def main():
     Menu()
@@ -49,15 +48,21 @@ def main():
     parent, child = Pipe()
     process = []
     canva = list(map(lambda x: ['']*44, range(16)))
-    parent.send(canva)
-    process.append(Process(target=cuadrado_1, args=([parent, child])))
-    process.append(Process(target=cuadrado_2, args=([parent, child])))
-    process.append(Process(target=cuadrado_3, args=([parent, child])))
-    [p.start() for p in process]
-    [print('proceso '+str(n)+': '+str(process[n].pid)) for n in range(len(process))]
-    [p.join() for p in process]
-
-
+    process.append(Process(target=cuadrado_1, args=([parent])))
+    process.append(Process(target=cuadrado_2, args=([parent])))
+    process.append(Process(target=cuadrado_3, args=([parent])))
+    for n in range(len(process)):
+        process[n].start()  
+        print('Proceso '+str(n+1)+': '+str(process[n].pid))
+        process[n].join()
+        sleep(0.1)
+    for n in range(3):
+        canv = child.recv()
+        for row in range(len(canv)):
+            for col in range(len(canv[0])):
+                if canv[row][col] != '':
+                    canva[row][col] = canv[row][col]
+    matrizPrint(canva)
 
 
 if __name__ == "__main__":

@@ -11,3 +11,11 @@ def Menu():
     print("\t1.Cuadrado")
     print("\t2.Trianguilo")
     print("\t3.S\n")
+
+def matrizPrint(m):
+    print()
+    for row in m:
+        for col in row:
+            print(col, end='')
+        print()
+    print()
