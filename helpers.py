@@ -29,8 +29,15 @@ def Canva():
 def Opciones():
     return [1, 2, 3, 11]
 
+def clear():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+  
+
 def Secret():
-    os.system('clear')
+    clear()
     print("                               @@@@@@@@@@@@@@@@@@@@@@@@@@@@                                     ")
     print("                        .@@@@@@                            @@@@@@                               ")
     print("                     @@@@                                        @@@                            ")
@@ -69,7 +76,7 @@ def Secret():
     print("               @@@                @@@@@@          @@@@@@               @@@@                     ")
     print("                  @@@@@@@@@@@@@@@@                      @@@@@@@@@@@@@@@.                        ")
     time.sleep(1)
-    os.system('clear')
+    clear()
     print("                               @@@@@@@@@@@@@@@@@@@@@@@@@@@@                                     ")
     print("                        .@@@@@@                            @@@@@@                               ")
     print("                     @@@@                                        @@@                            ")
@@ -108,7 +115,7 @@ def Secret():
     print("               @@@                @@@@@@          @@@@@@               @@@@                     ")
     print("                  @@@@@@@@@@@@@@@@                      @@@@@@@@@@@@@@@.                        ")
     time.sleep(0.5)
-    os.system('clear')
+    clear()
     print("                               @@@@@@@@@@@@@@@@@@@@@@@@@@@@                                     ")
     print("                        .@@@@@@                            @@@@@@                               ")
     print("                     @@@@                                        @@@                            ")
@@ -147,4 +154,4 @@ def Secret():
     print("               @@@                @@@@@@          @@@@@@               @@@@                     ")
     print("                  @@@@@@@@@@@@@@@@                      @@@@@@@@@@@@@@@.                        ")
     time.sleep(1)
-    os.system('clear')
+    clear()
