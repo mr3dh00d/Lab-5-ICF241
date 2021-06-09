@@ -19,3 +19,9 @@ def matrizPrint(m):
             print(col, end='')
         print()
     print()
+
+def Canva():
+    return list(map(lambda x: ['']*43, range(16)))
+
+def Opciones():
+    return [1, 2, 3, 11]
