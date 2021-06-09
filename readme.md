@@ -17,3 +17,4 @@ python3 main.py
 
 - [Franco Montiel](https://github.com/iFrankMT/)
 - [Dereck Pavez](https://github.com/mr3dh00d/)
+- Diego Pérez
