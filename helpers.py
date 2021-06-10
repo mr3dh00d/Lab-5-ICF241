@@ -9,6 +9,7 @@ def Menu():
     print("       |    |___ / __ \| \_\ (  <_> )  | \// __ \|  | (  <_> )  | \/  (  <_> )  /       \ ")
     print("       |_______ (____  /___  /\____/|__|  (____  /__|  \____/|__|  |__|\____/  /______  / ")
     print("               \/    \/    \/                  \/                                     \/  ")
+    print("                   Authors: Franco Montiel & Dereck Pavez & Diego Pérez")
     print("*************************************************************************************************")
     print("Elige cuidadosamente que figura quieres que construya el programa:\n")
     print("\t1.Cuadrado")
@@ -23,7 +24,7 @@ def matrizPrint(m):
         print()
     print()
 
-def Canva():
+def Canvas():
     return list(map(lambda x: ['']*43, range(16)))
 
 def Opciones():
